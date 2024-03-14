@@ -1,39 +1,22 @@
 import { Html, Head, Main, NextScript } from "next/document";
-import { Helmet } from "helmet";
 import Document from "next/document";
 
 export default class MyDocument extends Document {
-  static async getInitialProps(ctx) {
-    const initialProps = await Document.getInitialProps(ctx);
-
-    // Ensure Helmet has access to relevant user-agent for optimal configuration
-    const userAgent = ctx.req ? ctx.req.headers["user-agent"] : "";
-
-    return {
-      ...initialProps,
-      helmet: Helmet.renderStatic({ userAgent }),
-    };
-  }
-
   render() {
     return (
       <Html lang="en">
         <Head>
-          {/* ... other meta tags and links ... */}
-          <Helmet>
-            <contentSecurityPolicy {...contentSecurityPolicy} />{" "}
-            {/* Add your CSP configuration */}
-            <frameguard sameorigin /> {/* Or deny to prevent framing */}
-            <xFrameOptions deny />{" "}
-            {/* You can choose between sameorigin or deny */}
-            <xssProtection mode="block" />{" "}
-            {/* Consider the implications before enabling */}
-            <noSniff />
-            <hidePoweredBy />
-            <pragmaticCacheControl noCache="true" />{" "}
-            {/* Adjust caching headers as needed */}
-            {/* Add other headers as needed */}
-          </Helmet>
+          <meta
+            httpEquiv="Content-Security-Policy"
+            content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self';"
+          />
+          <meta httpEquiv="X-Content-Type-Options" content="nosniff" />
+          <meta httpEquiv="X-Frame-Options" content="SAMEORIGIN" />
+          <meta httpEquiv="X-XSS-Protection" content="1; mode=block" />
+          <meta
+            httpEquiv="Strict-Transport-Security"
+            content="max-age=31536000; includeSubDomains; preload"
+          />
         </Head>
         <body>
           <Main />
