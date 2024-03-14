@@ -13,7 +13,7 @@ const nextConfig = {
           },
           {
             key: "Content-Security-Policy",
-            value: "default-src 'self'",
+            value: "default-src 'self' 'unsafe-inline'",
           },
 
           {
