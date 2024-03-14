@@ -1,118 +1,168 @@
-import Image from "next/image";
 import { Inter } from "next/font/google";
 
 const inter = Inter({ subsets: ["latin"] });
 
+const ContactSection = ({ values }) => {
+  return (
+    <section className="flex flex-col w-full border-r  border-gray-200 hover:bg-gray-100">
+      <div className="flex flex-col p-10 gap-3">
+        <div className="w-full p-3 bg-[#022675] text-white uppercase font-semibold text-xl">
+          {values.title}
+        </div>
+        <div className="w-full border-t border-gray-200 mt-4" />
+        <table className="w-full border-none  text-gray-500">
+          <tbody>
+            {values.fields.map((field, index) => {
+              return (
+                <tr key={index}>
+                  <td className="p-3 align-left font-medium">{field.label}</td>
+                  <td className="p-3 align-left">{field.value}</td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
+    </section>
+  );
+};
+
 export default function Home() {
   return (
-    <main
-      className={`flex min-h-screen flex-col items-center justify-between p-24 ${inter.className}`}
-    >
-      <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">pages/index.js</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+    <div className="flex flex-col w-full min-h-screen bg-white">
+      {/* Header starts here */}
+      <header className="flex justify-between items-center w-full bg-[#022675] py-10 px-10 border-b border-white">
+        <a title="Rodwells | A NUTRIEN AG SOLUTIONS BUSINESS" href="#">
+          <img
+            className="sm:w-[9rem] w-full max-w-[240px] mb-0 "
+            src="rodwells-logo.png"
+            alt="Rodwells - A Nutrien Ag Solutions Business"
+          />
+        </a>
+        <nav>
+          <button className="bg-[#f57d1e] text-white font-semibold uppercase py-2 px-4  hover:bg-white hover:text-[#f57d1e] hover:border hover:border-[#f57d1e]">
+            <a
+              className="no-underline text-white font-semibold uppercase "
+              href="https://www.rodwellsre.com.au/"
+            >
+              Real Estate
+            </a>
+          </button>
+        </nav>
+      </header>
+      {/* Header ends here */}
+
+      {/* Banner section starts here */}
+      <div className="relative min-h-[37vw] flex justify-center items-center px-[1rem] py-[1.4rem]">
+        <div
+          className="bg-cover"
+          style={{ backgroundImage: "url(/banner.jpg)" }}
+        />
+        <div className="bg-text">
+          Rodwells is a Livestock & Real Estate agency business offering its
+          services through operations in 4 locations across Victoria, with
+          representatives in Benalla, Euroa, Wodonga and Wagga Wagga. Rodwells
+          is a major participant in the Livestock supply chain, with a presence
+          3 major selling centers, and access to all major selling centers in
+          Vic, SA & NSW. The Rodwells Real Estate business offers clients a
+          highly experienced team professionals to handle rural and regional
+          Real Estate marketing and transactions. Rodwells can also offer a
+          range of specialist services in Livestock Finance, Wool brokerage, &
+          Insurance. Rodwells is a diverse agribusiness that has the stated aim
+          of providing personal, competitive and efficient service to the rural
+          community.
         </div>
       </div>
+      {/* Banner section ends here */}
 
-      <div className="relative flex place-items-center before:absolute before:h-[300px] before:w-full sm:before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-full sm:after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700/10 after:dark:from-sky-900 after:dark:via-[#0141ff]/40 before:lg:h-[360px]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
+      {/* Contact section starts here */}
+      <div className="flex flex-col w-full justify-center items-center mt-10">
+        <h2 className="text-5xl font-semibold text-gray-500">KEY CONTACTS</h2>
+      </div>
+
+      <div className="grid sm:grid-cols-2 grid-cols-1  w-full mt-8">
+        <ContactSection
+          values={{
+            title: "Benalla",
+            fields: [
+              { label: "Tel:", value: "5762 7855" },
+              { label: "Address:", value: "19 Bridge St Benalla, VIC 3672" },
+            ],
+          }}
+        />
+        <ContactSection
+          values={{
+            title: "COROWA",
+            fields: [
+              { label: "Contact person:", value: "Adam Roberts" },
+              { label: "Tel:", value: "0409 122 388" },
+            ],
+          }}
+        />
+        <ContactSection
+          values={{
+            title: "WAGGA WAGGA",
+            fields: [
+              { label: "Tel:", value: "02 6921 1700" },
+              {
+                label: "Address:",
+                value: "	154 Fitzmaurice Street, Wagga Wagga NSW",
+              },
+            ],
+          }}
+        />
+        <ContactSection
+          values={{
+            title: "EUROA",
+            fields: [
+              { label: "Tel:", value: "03 5795 2240" },
+              { label: "Address:", value: "	31 Binney St, Euroa ViC 3666" },
+            ],
+          }}
+        />
+        <ContactSection
+          values={{
+            title: "WODONGA",
+            fields: [
+              { label: "Contact Person:", value: "Peter Ruaro" },
+              { label: "Tel:", value: "0447 6024 6830" },
+              { label: "", value: "02 6024 6830" },
+            ],
+          }}
         />
       </div>
+      {/* Contact section ends here */}
 
-      <div className="mb-32 grid text-center lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Docs{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Learn{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Templates{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Discover and deploy boilerplate example Next.js&nbsp;projects.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Deploy{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50 text-balance`}>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
+      {/* Footer starts here */}
+      <footer className="flex flex-col w-full justify-center items-center mt-10 bg-[#022675] py-5 px-10">
+        <div class="flex sm:flex-row flex-col text-sm gap-1">
+          Copyright © <span id="year">{new Date().getFullYear()}</span> Rodwells
+          Part of the{" "}
+          <a
+            href="https://www.nutrienagsolutions.com.au/"
+            className="hover:underline"
+          >
+            Nutrien Ag Solutions® Group
+          </a>{" "}
+          |
+          <a
+            target="_blank"
+            className="hover:underline"
+            href="https://www.nutrienagsolutions.com.au/terms-and-conditions-privacy-policy"
+          >
+            Terms of Use
+          </a>{" "}
+          |
+          <a
+            target="_blank"
+            className="hover:underline"
+            href="https://www.nutrienagsolutions.com.au/terms-and-conditions-privacy-policy"
+          >
+            Privacy and Security
+          </a>
+        </div>
+      </footer>
+      {/* Footer ends here */}
+    </div>
   );
 }
