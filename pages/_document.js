@@ -15,17 +15,18 @@ class MyDocument extends Document {
           {helmet.title.toComponent()}
           {helmet.meta.toComponent()}
           <meta
-            http-equiv="Content-Security-Policy"
+            httpEquiv="Content-Security-Policy"
             content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self';"
           />
-          <meta http-equiv="X-Content-Type-Options" content="nosniff" />
-          <meta http-equiv="X-Frame-Options" content="SAMEORIGIN" />
-          <meta http-equiv="X-XSS-Protection" content="1; mode=block" />
+          <meta httpEquiv="X-Content-Type-Options" content="nosniff" />
+          <meta httpEquiv="X-Frame-Options" content="SAMEORIGIN" />
+          <meta httpEquiv="X-XSS-Protection" content="1; mode=block" />
           <meta
-            http-equiv="Strict-Transport-Security"
+            httpEquiv="Strict-Transport-Security"
             content="max-age=31536000; includeSubDomains; preload"
           />
-          {/* Add other headers if necessary */}
+          <meta name="referrer" content="no-referrer" />
+          {/* Add Permissions-Policy header if necessary */}
         </Head>
         <body>
           <Main />
