@@ -12,10 +12,6 @@ const nextConfig = {
             value: "SAMEORIGIN",
           },
           {
-            key: "Content-Security-Policy",
-            value: "default-src 'self'",
-          },
-          {
             key: "X-Content-Type-Options",
             value: "nosniff",
           },
